@@ -1,0 +1,376 @@
+$text: 'open "~/GitHub/BlankCSS/Recursive Terminal.html"';
+
+$animation-time: 14s;
+$type-delay: 1s;
+$type-duration: 5s;
+$return-delay: 2s;
+$fade-out-delay: 1s;
+$fade-out-duration: 0.5s;
+$fade-in-delay: 1s;
+$fade-in-duration: 1.5s;
+$end-delay: 2s;
+
+$base-color: #EE695E;
+$background: change-color($base-color, $hue: 30deg);
+
+$epsilon: 0.001;
+
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+$animation-time: $type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration + $end-delay;
+$animation-time: ceil(strip-unit($animation-time)) * 1s;
+
+@keyframes anim1 {
+    0%,
+    #{percentage($type-delay / $animation-time)} {
+        width: 2ch;
+    }
+
+    #{percentage(($type-delay + $type-duration) / $animation-time)},
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay) / $animation-time)} {
+        width: #{2ch + (str-length($text) * 1ch)};
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $epsilon * 1s) / $animation-time)},
+    100% {
+        width: 2ch;
+    }
+}
+
+@keyframes anim2 {
+    @for $i from strip-unit(0s) to strip-unit($type-delay) {
+        #{percentage(($i * 1s) / $animation-time)} {
+            border-right-color: white;
+        }
+
+        #{percentage(($i + 0.5) * 1s / $animation-time)} {
+            border-right-color: transparent;
+        }
+    }
+
+    #{percentage($type-delay / $animation-time)} {
+        border-right-color: white;
+    }
+
+    #{percentage(($type-delay + $type-duration) / $animation-time)} {
+        border-right-color: white;
+    }
+
+    @for $i from strip-unit($type-delay + $type-duration) to strip-unit($type-delay + $type-duration + $return-delay) {
+        #{percentage(($i * 1s) / $animation-time)} {
+            border-right-color: white;
+        }
+
+        #{percentage(($i + 0.5) * 1s / $animation-time)} {
+            border-right-color: transparent;
+        }
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay) / $animation-time)},
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration) / $animation-time)} {
+        border-right-color: white;
+    }
+
+    @for $i from strip-unit($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration) to strip-unit($animation-time) {
+        #{percentage(($i * 1s) / $animation-time)} {
+            border-right-color: white;
+        }
+
+        #{percentage((($i + 0.5) * 1s) / $animation-time)} {
+            border-right-color: transparent;
+        }
+    }
+
+    100% {
+        border-right-color: white;
+    }
+}
+
+@keyframes anim3 {
+    $prefix:
+        7.75vmin * 1 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 2 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 3 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 4 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 5 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 6 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 7 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 8 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 9 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%),
+        7.75vmin * 10 2.5vmin 0 1vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%);
+
+    0%, #{percentage($type-delay / $animation-time)} {
+        box-shadow:
+            $prefix,
+            7.75vmin * 1 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 2 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 3 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 4 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 5 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 6 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 7 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 8 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 9 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 10 0 0 0 change-color($base-color, $saturation: 0);
+    }
+
+    @for $i from 1 through str-length($text) {
+        #{percentage(($type-delay + ($i / str-length($text) * $type-duration)) / $animation-time)} {
+            $downKey: random(10);
+            $shadow: "#{$prefix},";
+            @for $j from 1 through 10 {
+                @if ($j == $downKey) {
+                    $shadow: $shadow + "#{7.75vmin * $j} 0.75vmin 0 0 #{change-color($base-color, $saturation: 0)},";
+                } @else {
+                    $shadow: $shadow + "#{7.75vmin * $j} 0 0 0 #{change-color($base-color, $saturation: 0)},";
+                }
+            }
+            box-shadow: unquote(str-slice($shadow, 0, str-length($shadow) - 1));
+        }
+    }
+
+    #{percentage(($type-delay + ((str-length($text) + 1) / str-length($text) * $type-duration)) / $animation-time)} {
+        box-shadow:
+            $prefix,
+            7.75vmin * 1 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 2 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 3 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 4 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 5 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 6 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 7 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 8 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 9 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 10 0 0 0 change-color($base-color, $saturation: 0);
+    }
+
+    #{percentage(($type-delay + ((str-length($text) - 1) / str-length($text) * $type-duration) + strip-unit($return-delay)) / $animation-time)} {
+        box-shadow:
+            $prefix,
+            7.75vmin * 1 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 2 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 3 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 4 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 5 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 6 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 7 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 8 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 9 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 10 0 0 0 change-color($base-color, $saturation: 0);
+    }
+    
+    #{percentage(($type-delay + $type-duration + $return-delay) / $animation-time)},
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay) / $animation-time)} {
+        box-shadow:
+            $prefix,
+            7.75vmin * 1 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 2 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 3 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 4 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 5 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 6 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 7 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 8 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 9 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 10 0.75vmin 0 0 change-color($base-color, $saturation: 0);
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $epsilon * 1s) / $animation-time)},
+    100% {
+        box-shadow:
+            $prefix,
+            7.75vmin * 1 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 2 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 3 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 4 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 5 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 6 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 7 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 8 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 9 0 0 0 change-color($base-color, $saturation: 0),
+            7.75vmin * 10 0 0 0 change-color($base-color, $saturation: 0);
+    }
+}
+
+@keyframes anim4 {
+    0%, #{percentage(($type-delay + $type-duration + $return-delay) / $animation-time)} {
+        background-color: $background;
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $epsilon * 1s) / $animation-time)},
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration / 2) / $animation-time)} {
+        background-color: black;
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration / 2 + $epsilon * 1s) / $animation-time)},
+    100% {
+        background-color: $background;
+    }
+}
+
+@keyframes anim5 {
+    0%,
+    #{percentage(($type-delay + $type-duration + $return-delay) / $animation-time)} {
+        box-shadow:
+            0 0 0 4vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -25%),
+            -10vmin 0 0 4vmin $background,
+            10vmin 0 0 4vmin $background,
+            0 5vmin 0 4vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%);
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $epsilon * 1s) / $animation-time)},
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay / 2) / $animation-time)} {
+        box-shadow:
+            0 0 0 4vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -25%),
+            -10vmin 0 0 4vmin black,
+            10vmin 0 0 4vmin black,
+            0 5vmin 0 4vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%);
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay / 2 + $epsilon * 1s) / $animation-time)},
+    100% {
+        box-shadow:
+            0 0 0 4vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -25%),
+            -10vmin 0 0 4vmin $background,
+            10vmin 0 0 4vmin $background,
+            0 5vmin 0 4vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%);
+    }
+}
+
+@keyframes anim6 {
+    0%, #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay) / $animation-time)} {
+        opacity: 1;
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration) / $animation-time)},
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay) / $animation-time)} {
+        opacity: 0;
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration / 2) / $animation-time)}, 100% {
+        opacity: 1;
+    }
+}
+
+@keyframes anim7 {
+    0%, #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay) / $animation-time)} {
+        transform: scale(0);
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration / 2) / $animation-time)}, 100% {
+        transform: scale(1.5);
+    }
+}
+
+@keyframes anim8 {
+    0%,
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration) / $animation-time)} {
+        transform: scale(1);
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay) / $animation-time)},
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration / 2) / $animation-time)} {
+        transform: scale(0);
+    }
+
+    #{percentage(($type-delay + $type-duration + $return-delay + $fade-out-delay + $fade-out-duration + $fade-in-delay + $fade-in-duration) / $animation-time)},
+    100% {
+        transform: scale(1);
+    }
+}
+
+html {
+    background-color: $background;
+    animation: anim4 $animation-time linear infinite;
+    overflow: hidden;
+
+    &:before {
+        content: "";
+        display: block;
+        height: 100vmax;
+        width: 100vmax;
+        border-radius: 50%;
+        background-color: $background;
+        position: absolute;
+        left: calc(50vw - 50vmax);
+        top: calc(50vh - 50vmax);
+        animation: anim7 $animation-time linear infinite;
+    }
+
+    &:after {
+        $size: 1.5vmin;
+        content: "";
+        display: block;
+        background-color: #EE695E;
+        border-radius: 50%;
+        height: $size;
+        width: $size;
+        position: absolute;
+        top: calc(50vh - #{(45vmin / 2) - ((3vmin - $size) / 2)});
+        left: calc(50vw - #{(80vmin / 2) - ((3vmin - $size) / 2)});
+        pointer-events: none;
+        transform-origin: #{(-3vmin / 2) + (80vmin / 2)} #{(-3vmin / 2) + (45vmin / 2)};
+        animation:
+            anim6 $animation-time linear infinite,
+            anim8 $animation-time linear infinite;
+        box-shadow:
+            #{$size + ((3vmin - $size) / 2)} 0 #F5BD4F,
+            #{($size + ((3vmin - $size) / 2)) * 2} 0 #62C354;
+    }
+}
+
+body {
+    position: absolute;
+    left: calc(50vw - #{80vmin / 2});
+    top: calc(50vh - #{45vmin / 2});
+    height: 42vmin;
+    width: 80vmin;
+    margin: 0;
+    background: black;
+    border-top: 3vmin solid white;
+    border-radius: .5vmin;
+    cursor: text;
+    animation:
+        anim5 $animation-time linear infinite,
+        anim6 $animation-time linear infinite,
+        anim8 $animation-time linear infinite;
+    box-shadow:
+        0 0 0 4vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -25%),
+        -10vmin 0 0 4vmin $background,
+        10vmin 0 0 4vmin $background,
+        0 5vmin 0 4vmin scale-color(change-color($base-color, $saturation: 0), $lightness: -35%);
+    
+    &:before {
+        content: "$ " + $text;
+        display: block;
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 2vmin;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        top: 1vmin;
+        left: 2vmin;
+        animation:
+            anim1 $animation-time steps(str-length($text), start) infinite,
+            anim2 $animation-time steps(1, end) infinite;
+        border-right-style: solid;
+        border-right-width: 1ch;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        background: transparent;
+        position: absolute;
+        height: 1.5vmin;
+        width: 6.5vmin;
+        top: calc(100% + #{4vmin - 1.5vmin});
+        left: -7.75vmin + (80vmin - (7.75vmin * 9 + 6.5vmin)) / 2;
+        border-top-right-radius: 0.5vmin;
+        border-top-left-radius: 0.5vmin;
+        animation: anim3 $animation-time linear infinite;
+    }
+}

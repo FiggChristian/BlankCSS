@@ -1,0 +1,36 @@
+{
+  "name": "blankcss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-task:scss-compile": "node-sass-chokidar --no-source-map scss/ -o css",
+    "build-task:autoprefixer": "postcss css/*.css --use autoprefixer -d css",
+    "sass:build": "npm-run-all -p build-task:*",
+    "sass:watch": "chokidar 'scss/**/*.scss' -c 'npm run sass:build'",
+    "dev": "npm-run-all -p sass:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FiggChristian/BlankCSS.git"
+  },
+  "author": "Christian Figueroa <figgchristian@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FiggChristian/BlankCSS/issues"
+  },
+  "homepage": "https://github.com/FiggChristian/BlankCSS#readme",
+  "devDependencies": {
+    "binary-extensions": "^2.2.0",
+    "mathsass": "^0.11.0",
+    "node-sass-chokidar": "^1.5.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.6",
+    "watch": "^1.0.2"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.3.4",
+    "chokidar-cli": "^3.0.0",
+    "postcss-cli": "^8.3.1"
+  }
+}

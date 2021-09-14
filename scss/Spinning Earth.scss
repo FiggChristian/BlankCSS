@@ -1,0 +1,394 @@
+$space: #091224;
+$water: #1a85c4;
+$land: #4dd44d;
+$ice: white;
+
+$radius: 40vmin;
+
+@function x($units: 0) {
+    @return calc(50vw + #{$units * $radius / 12});
+}
+
+@function y($units: 0) {
+    @return calc(50vh + #{$units * $radius / 12});
+}
+
+@function size($units: 1) {
+    @return ($units - 1) / 2 * $radius / 12;
+}
+
+// @function rand-col() {
+//     @return rgb(random(255), random(255), random(255));
+// }
+
+@keyframes spin {
+    from {
+        transform: translateX(#{-$radius * 1.437});
+    }
+
+    to {
+        transform: translateX(#{$radius * 1.437});
+    }
+}
+
+html {
+    background-color: $water;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:before {
+        animation: spin 5s -2.5s linear infinite;
+        display: block;
+        content: "";
+        height: $radius / 12;
+        width: $radius / 12;
+        border-radius: 50%;
+        background-color: transparent;
+        position: absolute;
+        left: $radius / -24;
+        top: $radius / -24;
+        box-shadow:
+            x(-4.5)   y(-6)    0 size(1)   $land,
+            x(-4.5)   y(-4.5)  0 size(1)   $land,
+            x(-5.5)   y(-2)    0 size(1)   $land,
+            x(+29)    y(-2)    0 size(1)   $land,
+            x(-8)     y(+0)    0 size(1)   $land,
+            x(+26.5)  y(+0)    0 size(1)   $land,
+            x(-6.75)  y(+0.25) 0 size(0.5) $land,
+            x(+27.75) y(+0.25) 0 size(0.5) $land,
+            x(-6.75)  y(+0.75) 0 size(0.5) $land,
+            x(+27.75) y(+0.75) 0 size(0.5) $land,
+            x(-6.25)  y(+0.75) 0 size(0.5) $land,
+            x(+28.25) y(+0.75) 0 size(0.5) $land,
+            x(-4)     y(+1)    0 size(1)   $land,
+            x(-3)     y(+2)    0 size(1)   $land,
+            x(-3)     y(+3.5)  0 size(1)   $land,
+            x(-4)     y(+5)    0 size(1)   $land,
+            x(-5)     y(+7)    0 size(1)   $land,
+            x(-6)     y(+3)    0 size(1)   $land,
+            x(+28.5)  y(+3)    0 size(1)   $land,
+            x(-9)     y(-1.5)  0 size(1)   $land,
+            x(+25.5)  y(-1.5)  0 size(1)   $land,
+            x(-11)    y(-5.5)  0 size(1)   $land,
+            x(+23.5)  y(-5.5)  0 size(1)   $land,
+            x(-9.5)   y(-6.5)  0 size(1)   $land,
+            x(+25)    y(-6.5)  0 size(1)   $land,
+            x(+1)     y(-8)    0 size(1)   $land,
+            x(+0)     y(-5.5)  0 size(1)   $land,
+            x(+0.25)  y(-5.25) 0 size(0.5) $land,
+            x(+0.25)  y(-4.25) 0 size(0.5) $land,
+            x(+0)     y(-4)    0 size(1)   $land,
+            x(-1)     y(-3)    0 size(1)   $land,
+            x(-1)     y(-1.5)  0 size(1)   $land,
+            x(+1)     y(+1)    0 size(1)   $land,
+            x(+2)     y(+4.5)  0 size(1)   $land,
+            x(+2.5)   y(+4.5)  0 size(1)   $land,
+            x(+3.5)   y(+3.5)  0 size(1)   $land,
+            x(+4.5)   y(+0)    0 size(1)   $land,
+            x(+8.5)   y(-0.5)  0 size(1)   $land,
+            x(-26)    y(-0.5)  0 size(1)   $land,
+            x(+9.5)   y(-1.5)  0 size(1)   $land,
+            x(+11.5)  y(-1)    0 size(1)   $land,
+            x(+12.5)  y(+0)    0 size(1)   $land,
+            x(+13.5)  y(-1.5)  0 size(1)   $land,
+            x(+14.5)  y(-2.5)  0 size(1)   $land,
+            x(+14.5)  y(-4)    0 size(1)   $land,
+            x(+18.5)  y(-7)    0 size(1)   $land,
+            x(+20.5)  y(-6)    0 size(1)   $land,
+            x(-14)    y(-6)    0 size(1)   $land,
+            x(-16)    y(-7)    0 size(1)   $land,
+            x(-25)    y(-1.5)  0 size(1)   $land,
+            x(-23)    y(-1)    0 size(1)   $land,
+            x(-22)    y(+0)    0 size(1)   $land,
+            x(-21)    y(-1.5)  0 size(1)   $land,
+            x(-20)    y(-4)    0 size(1)   $land,
+            x(-20)    y(-2.5)  0 size(1)   $land,
+            x(+5)     y(-9)    0 size(1)   $land,
+            x(+7)     y(-9)    0 size(1)   $land,
+            x(+14)    y(-8)    0 size(1)   $land,
+            x(-20.5)  y(-8)    0 size(1)   $land,
+            x(+13)    y(+2)    0 size(1)   $land,
+            x(-21.5)  y(+2)    0 size(1)   $land,
+            x(+15)    y(+2)    0 size(1)   $land,
+            x(-19.5)  y(+2)    0 size(1)   $land,
+            x(+14)    y(+3.5)  0 size(1)   $land,
+            x(-20.5)  y(+3.5)  0 size(1)   $land,
+            x(+15.5)  y(+4)    0 size(1)   $land,
+            x(-19)    y(+4)    0 size(1)   $land,
+            x(+15.5)  y(+5)    0 size(1)   $land,
+            x(-19)    y(+5)    0 size(1)   $land,
+            x(+13)    y(+5)    0 size(1)   $land,
+            x(-21.5)  y(+5)    0 size(1)   $land,
+            x(+13)    y(+4.5)  0 size(1)   $land,
+            x(-21.5)  y(+4.5)  0 size(1)   $land,
+            x(+14.25) y(+3.25) 0 size(0.5) $land,
+            x(-20.25) y(+3.25) 0 size(0.5) $land,
+            x(+5)     y(+10)   0 size(1)   $ice,
+            x(-1)     y(+10)   0 size(1)   $ice,
+            x(-3)     y(-7)    0 size(1)   $ice,
+            x(-2)     y(-8)    0 size(1)   $ice,
+            x(-6)     y(-8)    0 size(1)   $ice,
+            x(-6)     y(-7)    0 size(1)   $ice,
+            x(-5.75)  y(-6.75) 0 size(0.5) $ice,
+            x(-3.25)  y(-6.75) 0 size(0.5) $ice,
+            x(-5)     y(+10)   0 size(1)   $ice,
+            x(-9)     y(+10)   0 size(1)   $ice,
+            x(-19)    y(+10)   0 size(1)   $ice,
+            x(+15.5)  y(+10)   0 size(1)   $ice,
+            x(-21)    y(+10)   0 size(1)   $ice,
+            x(+13.5)  y(+10)   0 size(1)   $ice,
+            x(-1)     y(-4)    0 size(1)   $water,
+            x(+6)     y(+10)   0 size(1)   $water,
+            x(-2)     y(+10)   0 size(1)   $water,
+            x(-4)     y(+10)   0 size(1)   $water,
+            x(+0.75)  y(-5.25) 0 size(0.5) $water,
+            x(+0.75)  y(-4.25) 0 size(0.5) $water,
+            x(+0)     y(-0.5)  0 size(1)   $water,
+            x(+1)     y(+2)    0 size(1)   $water,
+            x(+3.5)   y(+4.5)  0 size(1)   $water,
+            x(+4.5)   y(+1)    0 size(1)   $water,
+            x(-4)     y(+6)    0 size(1)   $water,
+            x(-3)     y(+4.5)  0 size(1)   $water,
+            x(-3)     y(+1)    0 size(1)   $water,
+            x(-6)     y(+4)    0 size(1)   $water,
+            x(+28.5)  y(+4)    0 size(1)   $water,
+            x(-6.25)  y(+0.25) 0 size(0.5) $water,
+            x(+28.25) y(+0.25) 0 size(0.5) $water,
+            x(-7.25)  y(+0.75) 0 size(0.5) $water,
+            x(+27.25) y(+0.75) 0 size(0.5) $water,
+            x(-6.75)  y(+1.25) 0 size(0.5) $water,
+            x(+27.75) y(+1.25) 0 size(0.5) $water,
+            x(-7)     y(-0.5)  0 size(1)   $water,
+            x(+27.5)  y(-0.5)  0 size(1)   $water,
+            x(-9)     y(-0.5)  0 size(1)   $water,
+            x(+25.5)  y(-0.5)  0 size(1)   $water,
+            x(-7)     y(-1)    0 size(1)   $water,
+            x(+27.5)  y(-1)    0 size(1)   $water,
+            x(-4.5)   y(-3.5)  0 size(1)   $water,
+            x(-5.5)   y(-6)    0 size(1)   $water,
+            x(-10.5)  y(-6.5)  0 size(1)   $water,
+            x(+24)    y(-6.5)  0 size(1)   $water,
+            x(-10)    y(-4.5)  0 size(1)   $water,
+            x(+24.5)  y(-4.5)  0 size(1)   $water,
+            x(-2)     y(-7)    0 size(1)   $water,
+            x(-3.75)  y(-6.75) 0 size(0.5) $water,
+            x(-5.25)  y(-6.75) 0 size(0.5) $water,
+            x(+3)     y(-4.5)  0 size(1)   $water,
+            x(+3)     y(-5)    0 size(1)   $water,
+            x(+0)     y(-6.5)  0 size(1)   $water,
+            x(+5.5)   y(-1.5)  0 size(1)   $water,
+            x(+9.5)   y(-0.5)  0 size(1)   $water,
+            x(+7.5)   y(-1.5)  0 size(1)   $water,
+            x(+10.5)  y(-2)    0 size(1)   $water,
+            x(+11.5)  y(+0)    0 size(1)   $water,
+            x(+13.5)  y(-0.5)  0 size(1)   $water,
+            x(+14.5)  y(-1.5)  0 size(1)   $water,
+            x(+14.5)  y(-5)    0 size(1)   $water,
+            x(+19.5)  y(-7)    0 size(1)   $water,
+            x(-15)    y(-7)    0 size(1)   $water,
+            x(-20)    y(-5)    0 size(1)   $water,
+            x(-24)    y(-2)    0 size(1)   $water,
+            x(-23)    y(+0)    0 size(1)   $water,
+            x(-21)    y(-0.5)  0 size(1)   $water,
+            x(-20)    y(-1.5)  0 size(1)   $water,
+            x(-25)    y(-0.5)  0 size(1)   $water,
+            x(+4)     y(-9)    0 size(1)   $water,
+            x(+8)     y(-9)    0 size(1)   $water,
+            x(+15)    y(-8)    0 size(1)   $water,
+            x(-19.5)  y(-8)    0 size(1)   $water,
+            x(+4)     y(-3.5)  0 size(1)   $water,
+            x(+4)     y(-2.5)  0 size(1)   $water,
+            x(+13)    y(+3.5)  0 size(1)   $water,
+            x(-21.5)  y(+3.5)  0 size(1)   $water,
+            x(+14.75) y(+3.25) 0 size(0.5) $water,
+            x(-19.75) y(+3.25) 0 size(0.5) $water,
+            x(-27)    y(-1.5)  0 size(1)   $water,
+            x(-10)    y(+10)   0 size(1)   $water,
+            x(-18)    y(+10)   0 size(1)   $water,
+            x(+16.5)  y(+10)   0 size(1)   $water,
+            x(-22)    y(+10)   0 size(1)   $water,
+            x(+12.5)  y(+10)   0 size(1)   $water;
+    }
+}
+
+body {
+    background-image: radial-gradient(closest-side circle, transparent #{percentage($radius / ($radius * 0 + 1) / 50)}, $space #{percentage($radius / ($radius * 0 + 1) / 50)});
+    margin: 0;
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    position: absolute;
+    display: block;
+
+    &:before {
+        animation: spin 5s -2.5s linear infinite;
+        display: block;
+        content: "";
+        height: $radius / 12;
+        width: $radius / 12;
+        background-color: transparent;
+        position: absolute;
+        left: $radius / -24;
+        top: $radius / -24;
+        z-index: -1;
+        box-shadow:
+            x(+4)      y(-3)     0 size(1)    $water,
+            x(-0.75)   y(-2.25)  0 size(1.5)  $land,
+            x(+0.5)    y(-2.5)   0 size(3)    $land,
+            x(+0.125)  y(-4.375) 0 size(0.25) $land,
+            x(+0.5)    y(-4)     0 size(0.5)  $land,
+            x(+2.25)   y(-0.75)  0 size(3.5)  $land,
+            x(+0.5)    y(-1)     0 size(1)    $land,
+            x(+2.5)    y(+0.5)   0 size(3)    $land,
+            x(+2.75)   y(+2.25)  0 size(2.5)  $land,
+            x(+2.5)    y(+3.5)   0 size(2)    $land,
+            x(+2.25)   y(+4.75)  0 size(0.5)  $land,
+            x(+4)      y(+0.5)   0 size(1)    $land,
+            x(+3)      y(-2)     0 size(4)    $land,
+            x(-5)      y(+6)     0 size(1)    $land,
+            x(-5)      y(+6.5)   0 size(1)    $land,
+            x(-4.75)   y(+5.25)  0 size(1.5)  $land,
+            x(-4.5)    y(+4)     0 size(2)    $land,
+            x(-3.5)    y(+4)     0 size(1)    $land,
+            x(-3.25)   y(+2.75)  0 size(1.5)  $land,
+            x(-3.5)    y(+1.5)   0 size(1)    $land,
+            x(-5.25)   y(+1.75)  0 size(2.5)  $land,
+            x(+29.25)  y(+1.75)  0 size(2.5)  $land,
+            x(-4.75)   y(+2.25)  0 size(2.5)  $land,
+            x(+29.75)  y(+2.25)  0 size(2.5)  $land,
+            x(-5.5)    y(+3.5)   0 size(1)    $land,
+            x(29)      y(+3.5)   0 size(1)    $land,
+            x(-6.5)    y(+0.5)   0 size(0.5)  $land,
+            x(+28)     y(+0.5)   0 size(0.5)  $land,
+            x(-7)      y(+0.5)   0 size(0.5)  $land,
+            x(+27.5)   y(+0.5)   0 size(0.5)  $land,
+            x(-6.5)    y(+1)     0 size(0.5)  $land,
+            x(+28)     y(+1)     0 size(0.5)  $land,
+            x(-7)      y(+0.25)  0 size(0.5)  $land,
+            x(+27.5)   y(+0.25)  0 size(0.5)  $land,
+            x(-7.5)    y(+0)     0 size(1)    $land,
+            x(+27)     y(+0)     0 size(1)    $land,
+            x(-7.5)    y(-3.5)   0 size(4)    $land,
+            x(+27)     y(-3.5)   0 size(4)    $land,
+            x(-8)      y(-2)     0 size(2)    $land,
+            x(+26.5)   y(-2)     0 size(2)    $land,
+            x(-8)      y(-0.5)   0 size(1)    $land,
+            x(+26.5)   y(-0.5)   0 size(1)    $land,
+            x(-8)      y(-1)     0 size(1)    $land,
+            x(+26.5)   y(-1)     0 size(1)    $land,
+            x(-8.5)    y(-1)     0 size(1)    $land,
+            x(+26)     y(-1)     0 size(1)    $land,
+            x(-6.5)    y(-3.5)   0 size(3)    $land,
+            x(+28)     y(-3.5)   0 size(3)    $land,
+            x(-5.5)    y(-4.5)   0 size(2)    $land,
+            x(+29)     y(-4.5)   0 size(2)    $land,
+            x(-7.75)   y(-5.25)  0 size(3.5)  $land,
+            x(+26.75)  y(-5.25)  0 size(3.5)  $land,
+            x(-10.5)   y(-5.5)   0 size(1)    $land,
+            x(+24)     y(-5.5)   0 size(1)    $land,
+            x(-9.75)   y(-5.75)  0 size(1.5)  $land,
+            x(+24.75)  y(-5.75)  0 size(1.5)  $land,
+            x(-9.5)    y(-5)     0 size(1)    $land,
+            x(+25)     y(-5)     0 size(1)    $land,
+            x(-4.75)   y(-5.25)  0 size(1.5)  $land,
+            x(-6)      y(-5.5)   0 size(1)    $land,
+            x(+6.75)   y(-5.25)  0 size(6.5)  $land,
+            x(+3.5)    y(-4)     0 size(1)    $land,
+            x(+3.5)    y(-5.5)   0 size(1)    $land,
+            x(+2.5)    y(-7)     0 size(3)    $land,
+            x(+0.5)    y(-6)     0 size(1)    $land,
+            x(+1.25)   y(-7.25)  0 size(1.5)  $land,
+            x(+0.5)    y(-5.5)   0 size(0.5)  $land,
+            x(+0.125)  y(-5.125) 0 size(0.25) $land,
+            x(+5)      y(-2)     0 size(1)    $land,
+            x(+8.75)   y(-1.25)  0 size(1.5)  $land,
+            x(+8)      y(-2)     0 size(1)    $land,
+            x(+9.5)    y(-2)     0 size(1)    $land,
+            x(+11.75)  y(-4.75)  0 size(5.5)  $land,
+            x(+12.25)  y(-2.25)  0 size(2.5)  $land,
+            x(+12.25)  y(-0.75)  0 size(1.5)  $land,
+            x(+13)     y(-1)     0 size(1)    $land,
+            x(+14)     y(-2)     0 size(1)    $land,
+            x(+14.25)  y(-3.25)  0 size(1.5)  $land,
+            x(+14.5)   y(-6.5)   0 size(2)    $land,
+            x(-20)     y(-6.5)   0 size(2)    $land,
+            x(+15.5)   y(-6.5)   0 size(2)    $land,
+            x(-19)     y(-6.5)   0 size(2)    $land,
+            x(+16.5)   y(-6.5)   0 size(2)    $land,
+            x(-18)     y(-6.5)   0 size(2)    $land,
+            x(+17.5)   y(-6.5)   0 size(2)    $land,
+            x(-17)     y(-6.5)   0 size(2)    $land,
+            x(+18.5)   y(-6)     0 size(1)    $land,
+            x(-16)     y(-6)     0 size(1)    $land,
+            x(+19)     y(-6)     0 size(1)    $land,
+            x(-14.5)   y(-6)     0 size(1)    $land,
+            x(+19.5)   y(-6)     0 size(1)    $land,
+            x(-15)     y(-6)     0 size(1)    $land,
+            x(+20)     y(-6)     0 size(1)    $land,
+            x(-15.5)   y(-6)     0 size(1)    $land,
+            x(+19)     y(-6.5)   0 size(1)    $land,
+            x(-15.5)   y(-6.5)   0 size(1)    $land,
+            x(-22.75)  y(-4.75)  0 size(5.5)  $land,
+            x(-22.25)  y(-2.25)  0 size(2.5)  $land,
+            x(-22.25)  y(-0.75)  0 size(1.5)  $land,
+            x(-21.5)   y(-1)     0 size(1)    $land,
+            x(-20.5)   y(-2)     0 size(1)    $land,
+            x(-20.25)  y(-3.25)  0 size(1.5)  $land,
+            x(-25.75)  y(-1.25)  0 size(1.5)  $land,
+            x(-25.5)   y(-2.5)   0 size(2)    $land,
+            x(-27.75)  y(-5.25)  0 size(6.5)  $land,
+            x(+6)      y(-8.5)   0 size(2)    $land,
+            x(+4.5)    y(-8.5)   0 size(1)    $land,
+            x(+7.5)    y(-8.5)   0 size(1)    $land,
+            x(12)      y(-6.5)   0 size(4)    $land,
+            x(-22.5)   y(-6.5)   0 size(4)    $land,
+            x(+14.5)   y(-7.5)   0 size(1)    $land,
+            x(-20)     y(-7.5)   0 size(1)    $land,
+            x(+14)     y(+4.5)   0 size(2)    $land,
+            x(-20.5)   y(+4.5)   0 size(2)    $land,
+            x(+14.5)   y(+4.5)   0 size(2)    $land,
+            x(-20)     y(+4.5)   0 size(2)    $land,
+            x(+14.5)   y(+3.5)   0 size(0.5)  $land,
+            x(-20)     y(+3.5)   0 size(0.5)  $land,
+            x(+15.5)   y(+4.5)   0 size(1)    $land,
+            x(-19)     y(+4.5)   0 size(1)    $land,
+            x(+12.75)  y(+4.75)  0 size(0.5)  $land,
+            x(-21.75)  y(+4.75)  0 size(0.5)  $land,
+            x(+14.125) y(+3.125) 0 size(0.25) $land,
+            x(-20.375) y(+3.125) 0 size(0.25) $land,
+            x(-26.5)   y(-2)     0 size(1)    $land,
+            x(+1.5)    y(-6.5)   0 size(2)    $land,
+            x(+8.75)   y(-2)     0 size(1)    $land,
+            x(-25.75)  y(-2)     0 size(1)    $land,
+            x(+10)     y(-8)     0 size(1)    $land,
+            x(-24.5)   y(-8)     0 size(1)    $land,
+            x(+0)      y(+17)    0 size(13)   $ice,
+            x(+12)     y(+17)    0 size(13)   $ice,
+            x(+24)     y(+17)    0 size(13)   $ice,
+            x(-12)     y(+17)    0 size(13)   $ice,
+            x(-24)     y(+17)    0 size(13)   $ice,
+            x(+2)      y(+12.5)  0 size(6)    $ice,
+            x(+5.5)    y(+10.5)  0 size(1)    $ice,
+            x(-1.5)    y(+10.5)  0 size(1)    $ice,
+            x(-4.5)    y(+10.5)  0 size(1)    $ice,
+            x(-2.75)   y(-7.75)  0 size(1.5)  $ice,
+            x(-6)      y(-7.5)   0 size(1)    $ice,
+            x(-5.25)   y(-7.75)  0 size(1.5)  $ice,
+            x(-4.25)   y(-7.75)  0 size(1.5)  $ice,
+            x(-3.5)    y(-7)     0 size(0.5)  $ice,
+            x(-5.5)    y(-7)     0 size(0.5)  $ice,
+            x(-3.125)  y(-6.625) 0 size(0.25) $ice,
+            x(-5.875)  y(-6.625) 0 size(0.25) $ice,
+            x(-7)      y(+11.5)  0 size(4)    $ice,
+            x(-9.5)    y(+10.5)  0 size(1)    $ice,
+            x(-18.5)   y(+10.5)  0 size(1)    $ice,
+            x(+16)     y(+10.5)  0 size(1)    $ice,
+            x(+13)     y(+10.5)  0 size(1)    $ice,
+            x(-21.5)   y(+10.5)  0 size(1)    $ice,
+            x(-20)     y(+10.5)  0 size(2)    $ice,
+            x(+14.5)   y(+10.5)  0 size(2)    $ice,
+            x(-3.75)   y(-7.75)  0 size(1.5)  $ice;
+    }
+}

@@ -1,0 +1,146 @@
+@import "./node_modules/mathsass/dist/math";
+
+$side-length: 35vmin;
+$sqrt2: sqrt(2);
+$sqrt3: sqrt(3);
+
+$animation-duration: 3s;
+$animation-curve-rate: 0.015s;
+
+@function noclip($angle) {
+    @if ($angle == 90deg) {
+        @return 89.9deg;
+    } @else if ($angle == -90deg) {
+        @return -89.9deg;
+    } @else {
+        @return $angle;
+    }
+}
+
+@keyframes anim1 {
+    0% {
+        transform:
+            translateY(-$side-length / 2)
+            scaleY(1 / $sqrt3)
+            rotate(0deg)
+            scale($sqrt3 / $sqrt2);
+    }
+
+    50% {
+        transform:
+            translateY(-$side-length / 2)
+            scaleY(1 / $sqrt3)
+            rotate(45deg)
+            scale($sqrt3 / $sqrt2);
+    }
+
+    100% {
+        transform:
+            translateY(-$side-length / 2)
+            scaleY(1 / $sqrt3)
+            rotate(90deg)
+            scale($sqrt3 / $sqrt2);
+    }
+}
+
+@keyframes anim2 {
+    $num-updates: $animation-duration / $animation-curve-rate;
+    @for $i from 0 through $num-updates {
+        $t: $i / $num-updates;
+        #{percentage($t)} {
+            transform:
+                scale($sqrt2 / $sqrt3)
+                rotate($t * -90deg)
+                scaleY($sqrt3)
+                translateX((cos(90deg * $t + 45deg) / $sqrt2) * $side-length * $sqrt3 / $sqrt2)
+                skewY(noclip(atan(tan($t * 90deg) / $sqrt3) * 1rad))
+                scaleX($sqrt3 / $sqrt2 * cos(90deg * $t))
+                translate(-$side-length / 2, $side-length - $side-length * (((1 - ($sqrt2 / 2)) * (sin((90deg / $PI) * (2 * $t - 1) + 270deg) + 1)) / (2 * sin(270deg - (90deg / $PI)) + 2)));
+        }
+    }
+}
+
+@keyframes anim3 {
+    $num-updates: $animation-duration / $animation-curve-rate;
+    @for $i from 0 through $num-updates {
+        $t: $i / $num-updates;
+        #{percentage($t)} {
+            transform:
+                scale($sqrt2 / $sqrt3)
+                rotate($t * -90deg)
+                scaleY($sqrt3)
+                translateX((cos(90deg * $t + 45deg) / $sqrt2) * $side-length * $sqrt3 / $sqrt2)
+                skewY(noclip(-1 * atan(tan((1 - $t) * 90deg) / $sqrt3) * 1rad))
+                scaleX($sqrt3 / $sqrt2 * cos(90deg * (1 - $t)))
+                translate($side-length / 2, $side-length - $side-length * (((1 - ($sqrt2 / 2)) * (sin((90deg / $PI) * (2 * $t - 1) + 270deg) + 1)) / (2 * sin(270deg - (90deg / $PI)) + 2)));
+        }
+    }
+}
+
+@keyframes anim4 {
+    0% {
+        background-color: #008080;
+    }
+
+    50%, #{percentage(($animation-duration - 0.2s) / $animation-duration)} {
+        background-color: #0000FF;
+    }
+
+    100% {
+        background-color: #008080;
+    }
+}
+
+@keyframes anim5 {
+    0% {
+        background-color: #008080;
+    }
+    
+    #{percentage(.2s / $animation-duration)}, 50% {
+        background-color: #00FF00;
+    }
+
+    100% {
+        background-color: #008080;
+    }
+}
+
+html {
+    background: radial-gradient(circle closest-side, rgba(0, 0, 0, 0.2) 0%, transparent 100%) #FFD54F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    display: block;
+    margin: 0;
+    background-color: red;
+    position: absolute;
+    height: $side-length;
+    width: $side-length;
+    animation: anim1 $animation-duration linear infinite;
+
+    &:before {
+        display: block;
+        content: "";
+        position: absolute;
+        height: $side-length;
+        width: $side-length;
+        animation:
+            anim2 $animation-duration linear infinite,
+            anim4 $animation-duration linear infinite;
+    }
+
+    &:after {
+        display: block;
+        content: "";
+        position: absolute;
+        height: $side-length;
+        width: $side-length;
+        background: green;
+        animation:
+            anim3 $animation-duration linear infinite,
+            anim5 $animation-duration linear infinite;;
+    }
+}
